@@ -16,7 +16,7 @@ if(isset($_POST['submit']))
     $suggestions = $_POST['suggestions'];
    
 
-    $query=mysqli_query($con, "update tblreservation set no_of_guest='$no_of_guest', email='$email', phone ='$phone', date_res ='$date_res', time ='$time', suggestions ='$suggestions' where ID='$reserve_id'");
+    $query=mysqli_query($con, "update tblreservation set no_of_guest ='$no_of_guest', email ='$email', phone ='$phone', date_res ='$date_res', time ='$time', suggestions ='$suggestions' where ID='$reserve_id'");
 
 
     if ($query) {
@@ -85,13 +85,7 @@ if(isset($_POST['submit']))
                             <p style="font-size:16px; color:red;"> <?php if($msg){
     echo $msg;
   }  ?> </p> 
-                      <?php
-$reserve_id=$_GET['reserve_id'];
-$ret=mysqli_query($con,"select * from tblreservation where ID='$reserve_id'");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
 
-?>
 
                             <form id="submit" action="#" class="wizard-big" method="post" name="submit">
                                     <fieldset>
@@ -107,16 +101,16 @@ while ($row=mysqli_fetch_array($ret)) {
                     
                                             
                                             <div class="form-group row"><label class="col-sm-2 col-form-label">Mobile Number:</label>
-                                                <div class="col-sm-10"><input type="text" class="form-control" name="phone" readonly="true" value="<?php  echo $row['phone'];?>">
+                                                <div class="col-sm-10"><input type="Number" class="form-control" name="phone"  value="<?php  echo $row['phone'];?>">
                                             </div>
                                             </div>
 
                                             <div class="form-group row"><label class="col-sm-2 col-form-label">Reservation Date:</label>
-                                                <div class="col-sm-10"><input type="text" class="form-control" name="date" readonly="true" value="<?php  echo $row['date_res'];?>"></div>
+                                                <div class="col-sm-10"><input type="date" class="form-control" name="date"  value="<?php  echo $row['date_res'];?>"></div>
                                             </div>
 
                                             <div class="form-group row"><label class="col-sm-2 col-form-label">Time:</label>
-                                                <div class="col-sm-10"><input type="text" class="form-control" name="time" readonly="true" value="<?php  echo $row['time'];?>">
+                                                <div class="col-sm-10"><input type="time" class="form-control" name="time"  value="<?php  echo $row['time'];?>">
                                                 </div>
 
                                            
@@ -247,4 +241,4 @@ while ($row=mysqli_fetch_array($ret)) {
 </body>
 
 </html>
-   <?php } ?> -->
+</fieldset>

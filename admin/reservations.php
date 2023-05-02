@@ -91,6 +91,7 @@ $result = "";
 
 			while($row = $reserve->fetch_assoc()) {
 				
+				$id = $row['ID'];
 				$reserve_id = $row['reserve_id'];
 				$no_of_guest = $row['no_of_guest'];
 				$email = $row['email'];
@@ -108,8 +109,8 @@ $result = "";
 								<td>$date_res</td>
 								<td>$time</td>
 								<td>$suggestions</td>
-								<td><a href='edit-reservation.php?reserve_id=".$reserve_id."><i class='pe-7s-close-circle'></i>Edit</a></td> 
-								<td><a href='reservations.php?delete=".$reserve_id."' onclick='return check(); 'style ='color:red;'><i class='pe-7s-close-circle'></i>Delete</a></td>
+								<td><a href='edit-reservation.php?edit=".$id."><i class='pe-7s-close-circle'></i>Edit</a></td> 
+								<td><a href='reservations.php?delete=".$id."' onclick='return check(); 'style ='color:red;'><i class='pe-7s-close-circle'></i>Delete</a></td>
 								
 
 							</tr>";
@@ -134,7 +135,7 @@ $result = "";
 		
 		if($delete != "") {
 			
-			$sql = $con->query("DELETE FROM tblreservation WHERE reserve_id='".$delete."'");
+			$sql = $con->query("DELETE FROM tblreservation WHERE id='".$delete."'");
 		
 			if($sql) {
 				
@@ -150,11 +151,11 @@ $result = "";
 		
 		
 	}
-
+	
 
 ?>
-		
-			
+	
+	
 <!doctype html>
 <html lang="en">
 <head>

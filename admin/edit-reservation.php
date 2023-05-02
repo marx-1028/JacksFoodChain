@@ -7,7 +7,8 @@ if (strlen($_SESSION['fosaid']==0)) {
   } else{
 if(isset($_POST['submit']))
   {
-    $reserve_id = $_GET['reserve_id'];
+    $id = $_GET['ID'];
+    $reserve_id = $_POST['reserve_id'];
     $no_of_guest = $_POST['no_of_guest'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
@@ -16,7 +17,7 @@ if(isset($_POST['submit']))
     $suggestions = $_POST['suggestions'];
    
 
-    $query=mysqli_query($con, "update tblreservation set no_of_guest ='$no_of_guest', email ='$email', phone ='$phone', date_res ='$date_res', time ='$time', suggestions ='$suggestions' where ID='$reserve_id'");
+    $query=mysqli_query($con, "update tblreservation set no_of_guest ='$no_of_guest', email ='$email', phone ='$phone', date_res ='$date_res', time ='$time', suggestions ='$suggestions' where ID='$id'");
 
 
     if ($query) {
@@ -85,7 +86,7 @@ if(isset($_POST['submit']))
                             <p style="font-size:16px; color:red;"> <?php if($msg){
     echo $msg;
   }  ?> </p> 
-
+  
 
                             <form id="submit" action="#" class="wizard-big" method="post" name="submit">
                                     <fieldset>
@@ -111,14 +112,29 @@ if(isset($_POST['submit']))
 
                                             <div class="form-group row"><label class="col-sm-2 col-form-label">Time:</label>
                                                 <div class="col-sm-10"><input type="time" class="form-control" name="time"  value="<?php  echo $row['time'];?>">
+                                                </div></div>
+
+                                           
+
+                                            <div class="form-group row" ><label class="col-sm-2 col-form-label" >Reservation Date:</label>
+                                                <div class="col-sm-10">
+                                                <select name="status" style=" border-width:3px;border-style:solid height:400px; width:300px">
+                                                  <option value="" align="center">Status</option>
+                                                  <option value="Confirm">Confirm</option>
+                                                  <option value="Pending">Pending</option>
+                                                  <option value="Cancel">Cancel</option>
+                                                </select>
                                                 </div>
+
+
 
                                            
                                         </fieldset>
 
                                 </fieldset>
+                                <?php } ?>
                                 
-                             <?php } ?>
+                            
                                
   
           <p style="text-align: center;"><button type="submit" name="submit" class="btn btn-primary">Update</button></p>
